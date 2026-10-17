@@ -1,0 +1,1111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLORE ACE ᵛˣ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #05060f;
+            --bg-panel: rgba(17, 24, 39, 0.72);
+            --card-surface: rgba(15, 23, 42, 0.78);
+            --card-border: rgba(56, 189, 248, 0.16);
+            --accent-cyan: #22d3ee;
+            --accent-blue: #3b82f6;
+            --accent-violet: #8b5cf6;
+            --success-glow: #34d399;
+            --danger: #f87171;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --gold: #fbbf24;
+            --radius-lg: 22px;
+            --radius-md: 14px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-deep);
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.10) 0%, transparent 42%),
+                radial-gradient(circle at 88% 12%, rgba(139, 92, 246, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.10) 0%, transparent 55%),
+                linear-gradient(to bottom, #03040c, #05060f);
+            background-attachment: fixed;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 16px 90px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===================== TOP NAVBAR ===================== */
+        .top-navbar {
+            width: 100%;
+            max-width: 560px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-panel);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 12px;
+            z-index: 50;
+            box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.9);
+        }
+
+        .brand-wrap { display: flex; align-items: center; gap: 10px; }
+
+        .brand-logo {
+            width: 38px; height: 38px;
+            border-radius: 11px;
+            object-fit: cover;
+            border: 1.5px solid rgba(34, 211, 238, 0.45);
+            box-shadow: 0 0 16px rgba(34, 211, 238, 0.35);
+            background: #0b1220;
+        }
+
+        .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+
+        .brand-name {
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            background: linear-gradient(92deg, #22d3ee 0%, #8b5cf6 55%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+
+        .brand-sub {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2.4px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+        }
+
+        .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+        .top-btn {
+            background: rgba(34, 211, 238, 0.10);
+            border: 1px solid rgba(34, 211, 238, 0.32);
+            color: var(--accent-cyan);
+            padding: 7px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .top-btn:hover { background: rgba(34, 211, 238, 0.22); transform: translateY(-1px); }
+
+        .top-btn.tg {
+            background: linear-gradient(135deg, #229ED9, #1c7fb0);
+            border-color: transparent;
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .top-btn.stop-active {
+            background: rgba(248, 113, 113, 0.10);
+            border-color: rgba(248, 113, 113, 0.34);
+            color: var(--danger);
+        }
+
+        .top-btn.stop-active:hover { background: rgba(248, 113, 113, 0.22); }
+
+        /* ===================== LAYOUT ===================== */
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .premium-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            box-shadow: 0 22px 46px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .premium-card:hover { border-color: rgba(34, 211, 238, 0.32); }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .card-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+
+        .clear-logs-btn {
+            background: rgba(248, 113, 113, 0.10);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: var(--danger);
+            padding: 4px 10px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            font-family: inherit;
+        }
+
+        .clear-logs-btn:hover { background: rgba(248, 113, 113, 0.2); }
+
+        .traffic-lights { display: flex; gap: 6px; align-items: center; }
+
+        .traffic-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot-red { background-color: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+        .dot-yellow { background-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6); }
+        .dot-green { background-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.6); }
+
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(52, 211, 153, 0.10);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: var(--success-glow);
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+        }
+
+        .live-pill.offline {
+            background: rgba(248, 113, 113, 0.10);
+            border-color: rgba(248, 113, 113, 0.3);
+            color: var(--danger);
+        }
+
+        .pulse-dot {
+            width: 6px; height: 6px;
+            background-color: var(--success-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success-glow);
+            animation: pulse 2s infinite;
+        }
+
+        .live-pill.offline .pulse-dot { background-color: var(--danger); box-shadow: 0 0 8px var(--danger); animation: none; }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 1; box-shadow: 0 0 12px var(--success-glow); }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* ===================== STATS GRID ===================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .stat-box {
+            background: linear-gradient(150deg, rgba(34, 211, 238, 0.08), rgba(139, 92, 246, 0.06));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 90% 0%, rgba(34, 211, 238, 0.14), transparent 60%);
+            pointer-events: none;
+        }
+
+        .stat-box .label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .stat-box .value {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.3px;
+        }
+
+        .stat-box .value.cyan { color: var(--accent-cyan); }
+        .stat-box .value.green { color: var(--success-glow); }
+        .stat-box .value.gold { color: var(--gold); }
+        .stat-box .value.glory {
+            background: linear-gradient(92deg, #fde68a, #f59e0b 55%, #fbbf24);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-box .sub {
+            margin-top: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .6px;
+            color: rgba(253, 230, 138, 0.75);
+        }
+        .glory-box {
+            border-color: rgba(251, 191, 36, 0.35) !important;
+            background: linear-gradient(150deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.05)) !important;
+            box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.08), 0 8px 22px rgba(245, 158, 11, 0.12);
+        }
+
+        /* ===================== MODE BADGE ===================== */
+        .mode-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-left: 14px;
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: #fde68a;
+            background: linear-gradient(92deg, rgba(251, 191, 36, 0.16), rgba(139, 92, 246, 0.16));
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            white-space: nowrap;
+            box-shadow: 0 0 16px rgba(251, 191, 36, 0.18);
+        }
+        .mode-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #fbbf24;
+            box-shadow: 0 0 10px #fbbf24;
+            animation: modePulse 1.6s ease-in-out infinite;
+        }
+        @keyframes modePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .45; transform: scale(.72); }
+        }
+        @media (max-width: 720px) {
+            .mode-badge { margin-left: 0; margin-top: 8px; }
+        }
+
+        /* ===================== GUILD PROFILE ===================== */
+        .guild-profile-row { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+
+        .guild-avatar {
+            width: 66px; height: 66px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid rgba(34, 211, 238, 0.4);
+            background: #0f172a;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        .guild-info h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 7px; letter-spacing: 0.3px; }
+
+        .guild-meta-tags { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-sub); flex-wrap: wrap; }
+
+        .tag-region {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .tag-lvl {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            color: #030712;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+        }
+
+        .session-box {
+            background: rgba(3, 7, 18, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 13px 15px;
+            margin-bottom: 16px;
+        }
+
+        .session-flex {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .progress-track { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 4px; overflow: hidden; }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--success-glow));
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.45);
+            transition: width 0.5s ease;
+        }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+
+        .metric-card {
+            background: rgba(3, 7, 18, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 13px 8px;
+            text-align: center;
+        }
+
+        .metric-card span {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        .metric-card strong { font-size: 16px; font-weight: 800; color: var(--gold); }
+
+        .action-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 55%, #8b5cf6 100%);
+            color: #030712;
+            border: none;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            font-size: 14.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 10px 24px -6px rgba(34, 211, 238, 0.45);
+            transition: all 0.2s ease;
+            font-family: inherit;
+            letter-spacing: 0.4px;
+        }
+
+        .action-btn:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 14px 28px -6px rgba(34, 211, 238, 0.6); }
+        .action-btn:active { transform: translateY(1px); }
+
+        /* ===================== ACCOUNT LIST ===================== */
+        .accounts-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .account-row {
+            background: rgba(3, 7, 18, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: 13px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: border-color 0.2s ease;
+        }
+
+        .account-row:hover { border-color: rgba(34, 211, 238, 0.28); }
+
+        .account-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+
+        .account-id-wrap { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+        .account-avatar {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #030712;
+            background: linear-gradient(135deg, #22d3ee, #8b5cf6);
+            flex-shrink: 0;
+        }
+
+        .account-name { font-size: 13.5px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .account-uid { font-size: 10.5px; color: var(--text-sub); font-family: 'Fira Code', monospace; }
+
+        .status-badge {
+            font-size: 9.5px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .status-online { background: rgba(52, 211, 153, 0.12); color: var(--success-glow); border: 1px solid rgba(52, 211, 153, 0.3); }
+        .status-paused { background: rgba(251, 191, 36, 0.12); color: var(--gold); border: 1px solid rgba(251, 191, 36, 0.3); }
+        .status-offline { background: rgba(248, 113, 113, 0.12); color: var(--danger); border: 1px solid rgba(248, 113, 113, 0.3); }
+
+        .account-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+
+        .acc-stat { text-align: center; }
+        .acc-stat .k { font-size: 9px; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+        .acc-stat .v { font-size: 12.5px; font-weight: 800; color: #e2e8f0; margin-top: 2px; }
+        .acc-stat .v.green { color: var(--success-glow); }
+        .acc-stat .v.glory { color: #fbbf24; text-shadow: 0 0 10px rgba(251, 191, 36, 0.4); }
+
+        .acc-progress { height: 4px; background: rgba(255, 255, 255, 0.06); border-radius: 3px; overflow: hidden; }
+        .acc-progress > div { height: 100%; background: linear-gradient(90deg, #22d3ee, #8b5cf6); border-radius: 3px; transition: width 0.5s ease; }
+
+        .account-actions { display: flex; gap: 8px; }
+
+        .mini-btn {
+            flex: 1;
+            padding: 7px;
+            border-radius: 9px;
+            font-size: 10.5px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-sub);
+            transition: all 0.18s ease;
+            font-family: inherit;
+        }
+
+        .mini-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .mini-btn.pause:hover { border-color: rgba(251, 191, 36, 0.4); color: var(--gold); }
+        .mini-btn.resume:hover { border-color: rgba(52, 211, 153, 0.4); color: var(--success-glow); }
+        .mini-btn.del:hover { border-color: rgba(248, 113, 113, 0.45); color: var(--danger); background: rgba(248, 113, 113, 0.1); }
+
+        .empty-state { text-align: center; color: var(--text-sub); font-size: 12.5px; padding: 26px 10px; }
+
+        /* ===================== TERMINAL ===================== */
+        .terminal-logs {
+            background: #02040a;
+            border: 1px solid rgba(34, 211, 238, 0.15);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            max-height: 320px;
+            overflow-y: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 11.5px;
+            line-height: 1.65;
+            color: #e2e8f0;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .terminal-logs::-webkit-scrollbar { width: 5px; }
+        .terminal-logs::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.25); border-radius: 3px; }
+
+        /* ===================== MODAL ===================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.82);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #0f172a;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 20px;
+            padding: 24px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+            animation: modalIn 0.25s ease;
+        }
+
+        @keyframes modalIn { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: none; } }
+
+        .modal-card h3 { color: var(--accent-cyan); margin-bottom: 16px; font-size: 17px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .form-group { margin-bottom: 14px; text-align: left; }
+
+        .form-group label { display: block; font-size: 11px; color: var(--text-sub); text-transform: uppercase; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
+
+        .form-input {
+            width: 100%;
+            background: #030712;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .form-input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12); }
+
+        .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+        .modal-btn { flex: 1; padding: 12px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; font-size: 13.5px; font-family: inherit; }
+
+        .btn-cancel { background: rgba(255, 255, 255, 0.06); color: var(--text-sub); }
+        .btn-cancel:hover { background: rgba(255, 255, 255, 0.1); }
+        .btn-submit { background: linear-gradient(135deg, #22d3ee, #3b82f6); color: #030712; }
+        .btn-submit:hover { opacity: 0.92; }
+
+        /* ===================== FLOATING TELEGRAM ===================== */
+        .tg-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: linear-gradient(135deg, #229ED9, #1c7fb0);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 14px 30px -8px rgba(34, 158, 217, 0.7);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .tg-float:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -8px rgba(34, 158, 217, 0.9); }
+
+        .footer-brand { text-align: center; color: var(--text-sub); font-size: 11px; margin-top: 6px; letter-spacing: 0.5px; }
+        .footer-brand a { color: var(--accent-cyan); text-decoration: none; font-weight: 700; }
+
+        @media (max-width: 420px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .account-stats { grid-template-columns: repeat(4, 1fr); }
+            .brand-sub { display: none; }
+            .top-btn { padding: 6px 9px; font-size: 10px; }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+    <!-- ===================== TOP NAVBAR ===================== -->
+    <div class="top-navbar">
+        <div class="brand-wrap">
+            <img class="brand-logo" src="https://raw.githubusercontent.com/ronobiswas874-sketch/Images/refs/heads/main/1792063565823.png" alt="GLORE ACE" onerror="this.style.display='none'">
+            <div class="brand-text">
+                <span class="brand-name">GLORE ACE ᵛˣ</span>
+                <span class="brand-sub">Squad Engine</span>
+            </div>
+            <span class="mode-badge" id="mode-badge" title="Active game mode">
+                <span class="mode-dot"></span> Clash Squad Ranked
+            </span>
+        </div>
+        <div class="nav-actions">
+            <a class="top-btn tg" href="https://t.me/ace_vvxx" target="_blank" rel="noopener">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                @ace_vvxx
+            </a>
+            <button class="top-btn" onclick="openAddAccountModal()">+ Add</button>
+            <button id="pause-toggle-btn" class="top-btn stop-active" onclick="togglePauseAll()">Stop</button>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+
+        <!-- ===================== OVERVIEW STATS ===================== -->
+        <div class="premium-card">
+            <div class="card-header-flex">
+                <span class="card-title">Engine Overview</span>
+                <div class="live-pill" id="engine-pill">
+                    <span class="pulse-dot"></span> RUNNING
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="label">Total Accounts</div>
+                    <div class="value cyan" id="stat-accounts">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Matches Played</div>
+                    <div class="value" id="stat-matches">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Total EXP Gained</div>
+                    <div class="value green" id="stat-gained">+0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">EXP / Hour</div>
+                    <div class="value gold" id="stat-eph">0</div>
+                </div>
+                <div class="stat-box glory-box">
+                    <div class="label">✨ Glory Farmed</div>
+                    <div class="value glory" id="stat-glory">0</div>
+                    <div class="sub" id="stat-glory-sub">+0 / match</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">⚡ Live Activity</div>
+                    <div class="value cyan" id="stat-activity">0</div>
+                    <div class="sub" id="stat-activity-sub">0 moves · 0 fires</div>
+                </div>
+            </div>
+            <div class="session-box" style="margin-bottom:0;">
+                <div class="session-flex">
+                    <span>Active Session Uptime</span>
+                    <span id="session-countdown" style="color:#22d3ee;">00h 00m 00s</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" id="session-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== GUILD LIVE TRACKER ===================== -->
+        <div class="premium-card">
+            <div class="card-header-flex">
+                <span class="card-title">Guild Live Tracker</span>
+                <div class="live-pill">
+                    <span class="pulse-dot"></span> LIVE
+                </div>
+            </div>
+
+            <div class="guild-profile-row">
+                <img src="logo.svg" alt="Logo" class="guild-avatar" onerror="this.onerror=null;this.src='https://via.placeholder.com/64/0f172a/22d3ee?text=G';">
+                <div class="guild-info">
+                    <h3 id="info-clan-name">N/H</h3>
+                    <div class="guild-meta-tags">
+                        <span>ID: <span id="info-clan-id">3055517625</span></span>
+                        <span class="tag-region" id="info-clan-region">IND</span>
+                        <span class="tag-lvl">LV.<span id="info-clan-level">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span>Initial</span>
+                    <strong id="info-clan-xp-old" style="color:var(--text-main);">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span>Current</span>
+                    <strong id="info-clan-xp-live">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span>Gained</span>
+                    <strong id="info-clan-xp-gained" style="color:#34d399;">+0</strong>
+                </div>
+            </div>
+
+            <button class="action-btn" onclick="refreshAllData()">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.73-5.73"/></svg>
+                Refresh Data
+            </button>
+        </div>
+
+        <!-- ===================== ACCOUNT MANAGEMENT ===================== -->
+        <div class="premium-card">
+            <div class="card-header-flex">
+                <span class="card-title">Active Accounts</span>
+                <button class="top-btn" onclick="openAddAccountModal()">+ Add Account</button>
+            </div>
+            <div class="accounts-list" id="accounts-list">
+                <div class="empty-state">Loading accounts…</div>
+            </div>
+        </div>
+
+        <!-- ===================== SYSTEM LOGS ===================== -->
+        <div class="premium-card">
+            <div class="card-header-flex" style="margin-bottom:12px; padding-bottom:10px;">
+                <span class="card-title">System Activity Logs</span>
+                <div class="header-actions">
+                    <button class="clear-logs-btn" onclick="clearLogs()">Clear</button>
+                    <div class="traffic-lights">
+                        <span class="traffic-dot dot-red"></span>
+                        <span class="traffic-dot dot-yellow"></span>
+                        <span class="traffic-dot dot-green"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="terminal-logs" id="bot-logs">
+                <span style="color:#22d3ee;">[System]</span> Initializing GLORE ACE engine…<br>
+                <span style="color:#34d399;">[API]</span> Synchronizing live logs…
+            </div>
+        </div>
+
+        <div class="footer-brand">
+            GLORE ACE ᵛˣ &nbsp;•&nbsp; Telegram <a href="https://t.me/ace_vvxx" target="_blank" rel="noopener">@ace_vvxx</a>
+        </div>
+    </div>
+
+    <!-- ===================== ADD ACCOUNT MODAL ===================== -->
+    <div class="modal-overlay" id="addAccountModal">
+        <div class="modal-card">
+            <h3>Add New Account</h3>
+            <div class="form-group">
+                <label>Account UID</label>
+                <input type="text" id="modalUidInput" class="form-input" placeholder="Enter UID">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="modalPasswordInput" class="form-input" placeholder="Enter Password">
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn btn-cancel" onclick="closeAddAccountModal()">Cancel</button>
+                <button class="modal-btn btn-submit" onclick="submitAddAccount()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== FLOATING TELEGRAM ===================== -->
+    <a class="tg-float" href="https://t.me/ace_vvxx" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        Join Telegram
+    </a>
+
+    <script>
+        // ─────────────── CONFIG ───────────────
+        const API_KEY = "GLORE_ACE";
+        const DEFAULT_CLAN_ID = "3055517625";
+        const DEFAULT_REGION = "IND";
+        const TELEGRAM = "@ace_vvxx";
+        let autoRefreshTimer = null;
+        let isAllPaused = false;
+        let currentAccounts = [];
+
+        // ─────────────── HELPERS ───────────────
+        function formatUptime(totalSeconds) {
+            totalSeconds = Math.max(0, Math.floor(totalSeconds || 0));
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+        }
+
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function toast(msg, type) {
+            // lightweight non-blocking notification
+            let box = document.getElementById('glore-toast');
+            if (!box) {
+                box = document.createElement('div');
+                box.id = 'glore-toast';
+                box.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:2000;background:#0f172a;border:1px solid rgba(34,211,238,.4);color:#f8fafc;padding:11px 18px;border-radius:12px;font-size:12.5px;font-weight:600;box-shadow:0 16px 34px -12px rgba(0,0,0,.9);opacity:0;transition:opacity .25s ease;max-width:90vw;text-align:center;';
+                document.body.appendChild(box);
+            }
+            box.textContent = msg;
+            box.style.borderColor = type === 'error' ? 'rgba(248,113,113,.5)' : (type === 'success' ? 'rgba(52,211,153,.5)' : 'rgba(34,211,238,.4)');
+            box.style.opacity = '1';
+            clearTimeout(box._t);
+            box._t = setTimeout(() => { box.style.opacity = '0'; }, 2600);
+        }
+
+        // ─────────────── GUILD INFO ───────────────
+        async function fetchGuildInfo() {
+            try {
+                const guildRes = await fetch(`/api/guildinfo?guild_id=${DEFAULT_CLAN_ID}&region=${DEFAULT_REGION}&key=${API_KEY}`, {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
+                });
+                if (!guildRes.ok) return;
+                const responseJson = await guildRes.json();
+                const guildData = responseJson.api_response ? responseJson.api_response.clan_basic_info : responseJson;
+                if (guildData) {
+                    const currentXp = Number(guildData['Total guild xp'] || guildData['xp'] || 0);
+                    const baselineXp = Number(guildData.old_xp || currentXp);
+                    const gainedXp = Number(guildData.gained_exp || 0);
+                    const clanLevel = guildData.clan_level || '1';
+
+                    document.getElementById('info-clan-name').textContent = guildData.clan_name || 'N/H';
+                    document.getElementById('info-clan-id').textContent = guildData.clan_id || DEFAULT_CLAN_ID;
+                    document.getElementById('info-clan-region').textContent = guildData.region || DEFAULT_REGION;
+                    document.getElementById('info-clan-level').textContent = clanLevel;
+
+                    document.getElementById('info-clan-xp-old').textContent = baselineXp.toLocaleString();
+                    document.getElementById('info-clan-xp-live').textContent = currentXp.toLocaleString();
+                    document.getElementById('info-clan-xp-gained').textContent = (gainedXp >= 0 ? `+${gainedXp}` : gainedXp).toLocaleString();
+                }
+            } catch (err) {
+                console.error('Error fetching guild info:', err);
+            }
+        }
+
+        // ─────────────── STATS + ACCOUNTS ───────────────
+        async function fetchStatsAndUptime() {
+            try {
+                const res = await fetch('/api/stats', { method: 'GET', headers: {'Content-Type': 'application/json'} });
+                if (!res.ok) return;
+                const stats = await res.json();
+
+                const uptimeSec = stats.uptime || 0;
+                document.getElementById('session-countdown').textContent = formatUptime(uptimeSec);
+                const maxCycle = 43200;
+                const pct = Math.min(100, ((uptimeSec % maxCycle) / maxCycle) * 100);
+                document.getElementById('session-progress-bar').style.width = pct + '%';
+
+                document.getElementById('stat-accounts').textContent = stats.total_accounts || 0;
+                document.getElementById('stat-matches').textContent = (stats.total_matches || 0).toLocaleString();
+                document.getElementById('stat-gained').textContent = '+' + (stats.total_gained_exp || 0).toLocaleString();
+                document.getElementById('stat-eph').textContent = (stats.exp_per_hour || 0).toLocaleString();
+
+                // ── Glory farm + live mode badge ──
+                const gloryEl = document.getElementById('stat-glory');
+                if (gloryEl) gloryEl.textContent = (stats.total_glory || 0).toLocaleString();
+                const glorySub = document.getElementById('stat-glory-sub');
+                if (glorySub) {
+                    const streak = stats.best_glory_streak || 0;
+                    glorySub.textContent = '+' + (stats.glory_per_match || 0) + ' / match' +
+                        (streak > 1 ? ' · 🔥 ' + streak + 'x' : '');
+                }
+                // ── Live in-game activity (movement + combat packets) ──
+                const actEl = document.getElementById('stat-activity');
+                if (actEl) actEl.textContent = ((stats.movement_packets || 0) + (stats.anti_afk_fires || 0)).toLocaleString();
+                const actSub = document.getElementById('stat-activity-sub');
+                if (actSub) actSub.textContent = (stats.movement_packets || 0).toLocaleString() + ' moves · ' +
+                    (stats.anti_afk_fires || 0).toLocaleString() + ' fires';
+                const modeBadge = document.getElementById('mode-badge');
+                if (modeBadge && stats.mode) {
+                    const lbl = stats.mode.label || 'Clash Squad Ranked';
+                    modeBadge.innerHTML = '<span class="mode-dot"></span> ' + lbl;
+                }
+
+                currentAccounts = stats.accounts || [];
+                renderAccounts(currentAccounts);
+            } catch (err) {
+                console.error('Error fetching stats:', err);
+            }
+        }
+
+        function renderAccounts(accounts) {
+            const box = document.getElementById('accounts-list');
+            if (!accounts || accounts.length === 0) {
+                box.innerHTML = '<div class="empty-state">No accounts connected yet.<br>Tap “+ Add Account” to start.</div>';
+                return;
+            }
+            box.innerHTML = accounts.map(acc => {
+                const uid = esc(acc.uid || '');
+                const nick = esc(acc.nickname || ('Player_' + uid.slice(0, 6)));
+                const region = esc(acc.region || '—');
+                const level = acc.level || 1;
+                const gained = acc.gained_exp || 0;
+                const matches = acc.matches_played || 0;
+                const progress = Math.min(100, Math.max(0, acc.progress_pct || 0));
+                const paused = acc.is_paused;
+                const status = (acc.status || (paused ? 'PAUSED' : 'ONLINE')).toUpperCase();
+                const statusClass = status === 'PAUSED' ? 'status-paused' : (status === 'OFFLINE' ? 'status-offline' : 'status-online');
+                const initial = (nick[0] || 'G').toUpperCase();
+
+                return `
+                <div class="account-row">
+                    <div class="account-top">
+                        <div class="account-id-wrap">
+                            <div class="account-avatar">${esc(initial)}</div>
+                            <div style="min-width:0;">
+                                <div class="account-name">${nick}</div>
+                                <div class="account-uid">UID ${uid} • ${region} • LV.${level}</div>
+                            </div>
+                        </div>
+                        <span class="status-badge ${statusClass}">${status}</span>
+                    </div>
+                    <div class="account-stats">
+                        <div class="acc-stat"><div class="k">Matches</div><div class="v">${matches}</div></div>
+                        <div class="acc-stat"><div class="k">Gained</div><div class="v green">+${gained}</div></div>
+                        <div class="acc-stat"><div class="k">✨ Glory</div><div class="v glory">${(acc.glory || 0).toLocaleString()}</div></div>
+                        <div class="acc-stat"><div class="k">Next LV</div><div class="v">${acc.next_level || '—'}</div></div>
+                        <div class="acc-stat"><div class="k">Uptime</div><div class="v">${Math.floor((acc.uptime_seconds || 0)/60)}m</div></div>
+                    </div>
+                    <div class="acc-progress"><div style="width:${progress}%"></div></div>
+                    <div class="account-actions">
+                        <button class="mini-btn ${paused ? 'resume' : 'pause'}" onclick="toggleAccountPause('${uid}')">${paused ? '▶ Resume' : '❚❚ Pause'}</button>
+                        <button class="mini-btn" onclick="restartAccount('${uid}')">↻ Restart</button>
+                        <button class="mini-btn del" onclick="deleteAccount('${uid}')">✕ Delete</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        // ─────────────── LOGS ───────────────
+        async function fetchLogs() {
+            try {
+                const logsRes = await fetch('/api/logs', { method: 'GET', headers: {'Content-Type': 'application/json'} });
+                if (!logsRes.ok) return;
+                const logsJson = await logsRes.json();
+                const logsBox = document.getElementById('bot-logs');
+                if (logsJson.logs) {
+                    logsBox.innerHTML = Array.isArray(logsJson.logs) ? logsJson.logs.join('<br>') : logsJson.logs;
+                    logsBox.scrollTop = logsBox.scrollHeight;
+                }
+            } catch (err) {
+                console.error('Error fetching logs:', err);
+            }
+        }
+
+        async function clearLogs() {
+            try {
+                const res = await fetch('/api/logs/clear', { method: 'POST', headers: {'Content-Type': 'application/json'} });
+                if (res.ok) document.getElementById('bot-logs').innerHTML = '<span style="color:#22d3ee;">[System]</span> Logs cleared.';
+            } catch (err) { console.error('Error clearing logs:', err); }
+        }
+
+        // ─────────────── ACCOUNT ACTIONS ───────────────
+        function openAddAccountModal() { document.getElementById('addAccountModal').style.display = 'flex'; }
+
+        function closeAddAccountModal() {
+            document.getElementById('addAccountModal').style.display = 'none';
+            document.getElementById('modalUidInput').value = '';
+            document.getElementById('modalPasswordInput').value = '';
+        }
+
+        async function submitAddAccount() {
+            const uid = document.getElementById('modalUidInput').value.trim();
+            const password = document.getElementById('modalPasswordInput').value.trim();
+            if (!uid || !password) { toast('Please enter both UID and Password', 'error'); return; }
+            try {
+                const res = await fetch('/api/account/add', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ uid, password })
+                });
+                const data = await res.json();
+                if (data.status === 'ok') {
+                    toast('Account added successfully!', 'success');
+                    closeAddAccountModal();
+                    refreshAllData();
+                } else {
+                    toast('Error: ' + (data.error || 'Failed to add account'), 'error');
+                }
+            } catch (err) { console.error('Add account error:', err); toast('Network error', 'error'); }
+        }
+
+        async function toggleAccountPause(uid) {
+            try {
+                const res = await fetch('/api/account/pause', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ uid })
+                });
+                const data = await res.json();
+                if (data.status === 'ok') { toast(data.is_paused ? 'Account paused' : 'Account resumed', 'success'); refreshAllData(); }
+            } catch (err) { console.error('Pause error:', err); }
+        }
+
+        async function restartAccount(uid) {
+            try {
+                await fetch('/api/account/restart', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ uid })
+                });
+                toast('Restart signal sent', 'success');
+                refreshAllData();
+            } catch (err) { console.error('Restart error:', err); }
+        }
+
+        async function deleteAccount(uid) {
+            if (!confirm('Delete account ' + uid + '? This stops the bot for this account.')) return;
+            try {
+                const res = await fetch('/api/account/delete', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ uid })
+                });
+                const data = await res.json();
+                if (data.status === 'ok') { toast('Account deleted', 'success'); refreshAllData(); }
+                else toast('Error: ' + (data.error || 'delete failed'), 'error');
+            } catch (err) { console.error('Delete error:', err); }
+        }
+
+        async function togglePauseAll() {
+            const btn = document.getElementById('pause-toggle-btn');
+            const endpoint = isAllPaused ? '/api/account/restart' : '/api/account/pause_all';
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({})
+                });
+                const data = await res.json();
+                if (data.status === 'ok') {
+                    isAllPaused = !isAllPaused;
+                    if (isAllPaused) {
+                        btn.textContent = 'Restart';
+                        btn.classList.remove('stop-active');
+                        toast('All accounts paused', 'success');
+                    } else {
+                        btn.textContent = 'Stop';
+                        btn.classList.add('stop-active');
+                        toast('All accounts resumed', 'success');
+                    }
+                    refreshAllData();
+                }
+            } catch (err) { console.error('Toggle pause/restart error:', err); }
+        }
+
+        async function sendAutomaticJoinRequest() {
+            try {
+                await fetch('/api/clanjoin', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ clan_id: DEFAULT_CLAN_ID })
+                });
+            } catch (err) { console.error('Join request error:', err); }
+        }
+
+        async function refreshAllData() {
+            await fetchGuildInfo();
+            await fetchStatsAndUptime();
+            await fetchLogs();
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await sendAutomaticJoinRequest();
+            await refreshAllData();
+            if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+            autoRefreshTimer = setInterval(refreshAllData, 8000);
+        });
+    </script>
+</body>
+</html>
